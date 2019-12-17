@@ -14,7 +14,8 @@ de la barra de accion de android con "StatusBar.currentHeight" seguido a eso lo 
 que tenemos del ALTO "DPHeight" para obtener el valor de en pixeles y el valor de es dp equivalente ya en pixeles
 lo multiplicamos por el dp de diseño
 */
-export function getPixelByHeightDP(dp) { return (dp * ((Dimensions.get('screen').height - StatusBar.currentHeight) / DPHeight)) }
+// export function getPixelByHeightDP(dp) { return (dp * ((Dimensions.get('screen').height) / DPHeight)) }
+export function getPixelByHeightDP(dp) { return (dp * ((Dimensions.get('window').height) / DPHeight)) }
 /*
 Esta funcion obtenemos el ANCHO de la pantalla con "Dimensions.get('screen').width" lo dividimos segun la escala 
 que tenemos del ancho "DPWidth" para obtener el valor de en pixeles y el valor de es dp equivalente ya en pixeles
