@@ -1,178 +1,62 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, SafeAreaView, StatusBar, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native';
 import * as ResponsiveDP from './function';
+import Animation from "./Animation";
+import TestDp from "./TestDp";
+
 
 const SizeFontGeneral = 12;
+const Routs = [
+  {
+    "name": "Test dp response",
+    "route": "TestDp",
+  },
+  {
+    "name": "Test Animation",
+    "route": "Animation",
+  }
+]
 
 export default class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
+      route: false
     };
   }
 
+  selectRout = (route) => this.setState({ route });
+
   render() {
+    const { route } = this.state;
+
+    if (route) {
+      if (route == 'Animation') return <Animation back={() => this.setState({ route: false })} />;
+      if (route == 'TestDp') return <TestDp back={() => this.setState({ route: false })} />;
+    }
+
     return (
       <View style={styles.component}>
-        <View style={styles.header}>
-          <Image style={{
-            width: ResponsiveDP.getPixelByWidthDP(24),
-            height: ResponsiveDP.getPixelByHeightDP(24),
-          }} source={require('./Assets/back/back.png')} />
-          <Text style={{ marginLeft: ResponsiveDP.getPixelByWidthDP(32), fontSize: ResponsiveDP.FontSizeRP(14), color: '#02a71e', fontWeight: 'bold' }}>Dashboard</Text>
-        </View>
 
-        <View style={styles.Contain1}>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: ResponsiveDP.FontSizeRP(14), fontWeight: 'bold', color: '#02a71e' }}>Register</Text>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: ResponsiveDP.FontSizeRP(14), color: "#c4c4c4" }}>History ( Today)</Text>
-          </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center', height: ResponsiveDP.getPixelByHeightDP(56), width: ResponsiveDP.getPixelByWidthDP(360) }}>
+          <Text>Seleccione uno para probar</Text>
         </View>
 
         <View style={{ flex: 1 }}>
           <ScrollView>
-            <View style={styles.Contain2}>
-              <Text style={{ ...styles.Text1, marginTop: 0 }}>Search and register sold units.</Text>
-
-              <View style={styles.View1} >
-                <TextInput
-                  style={{}}
-                  allowFontScaling={true}
-                  placeholderTextColor='#c4c4c4'
-                  placeholder={'Search'}
-                />
-              </View>
-              <Text style={styles.Text1}>Period</Text>
-              <View style={styles.View2} >
-                <TouchableOpacity style={{ borderTopLeftRadius: ResponsiveDP.getPixelByWidthDP(4), borderBottomLeftRadius: ResponsiveDP.getPixelByWidthDP(4), width: ResponsiveDP.getPixelByWidthDP(164), height: ResponsiveDP.getPixelByHeightDP(36), justifyContent: 'center', alignItems: 'center', backgroundColor: '#006ed3' }}>
-                  <Text style={{ color: '#ffffff' }}>Weekly</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ borderTopRightRadius: ResponsiveDP.getPixelByWidthDP(4), borderBottomRightRadius: ResponsiveDP.getPixelByWidthDP(4), width: ResponsiveDP.getPixelByWidthDP(164), height: ResponsiveDP.getPixelByHeightDP(36), justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ color: '#c4c4c4' }}>Daily</Text>
-                </TouchableOpacity>
-              </View>
-
-
-              <Text style={styles.Text1}>Date</Text>
-
-              <View style={styles.View3} >
-                <TextInput
-                  style={{}}
-                  allowFontScaling={true}
-                  placeholderTextColor='#c4c4c4'
-                  placeholder={'Select'}
-                />
-              </View>
-
-              <View style={{ borderColor: '#c4c4c4', marginTop: ResponsiveDP.getPixelByHeightDP(15.7), width: ResponsiveDP.getPixelByWidthDP(360), borderWidth: 0.2 }} />
-
-              <Text style={styles.Text1}>Tap the filters to search sold units.</Text>
-
-
-              <Text style={styles.Text1}>Category</Text>
-
-              <View style={styles.View2} >
-                <TouchableOpacity style={{ borderTopLeftRadius: ResponsiveDP.getPixelByWidthDP(4), borderBottomLeftRadius: ResponsiveDP.getPixelByWidthDP(4), width: ResponsiveDP.getPixelByWidthDP(110), height: ResponsiveDP.getPixelByHeightDP(36), justifyContent: 'center', alignItems: 'center', backgroundColor: '#006ed3' }}>
-                  <Text style={{ fontSize: ResponsiveDP.FontSizeRP(SizeFontGeneral), color: '#ffffff' }}>Weekly</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ borderBottomRightRadius: ResponsiveDP.getPixelByWidthDP(4), width: ResponsiveDP.getPixelByWidthDP(110), height: ResponsiveDP.getPixelByHeightDP(36), justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ fontSize: ResponsiveDP.FontSizeRP(SizeFontGeneral), color: '#c4c4c4' }}>Daily</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ borderTopRightRadius: ResponsiveDP.getPixelByWidthDP(4), borderBottomRightRadius: ResponsiveDP.getPixelByWidthDP(4), width: ResponsiveDP.getPixelByWidthDP(110), height: ResponsiveDP.getPixelByHeightDP(36), justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ fontSize: ResponsiveDP.FontSizeRP(SizeFontGeneral), color: '#c4c4c4' }}>Daily</Text>
-                </TouchableOpacity>
-              </View>
-
-
-
-
-              <Text style={styles.Text1}>Brand</Text>
-
-              <View style={styles.View3} >
-                <TextInput
-                  style={{}}
-                  allowFontScaling={true}
-                  placeholderTextColor='#c4c4c4'
-                  placeholder={'Select'}
-                />
-              </View>
-
-
-              <View style={{ flexDirection: 'row', marginTop: ResponsiveDP.getPixelByHeightDP(16), }}>
-
-                <View style={{ marginRight: ResponsiveDP.getPixelByWidthDP(4) }} >
-                  <Text style={{ ...styles.Text1, marginTop: 0 }}>Product</Text>
-                  <View style={styles.View4} >
-                    <TextInput
-                      style={{}}
-                      allowFontScaling={true}
-                      placeholderTextColor='#c4c4c4'
-                      placeholder={'Select'}
-                    />
-                  </View>
-                </View>
-
-                <View style={{ marginLeft: ResponsiveDP.getPixelByWidthDP(4) }} >
-                  <Text style={{ ...styles.Text1, marginTop: 0 }}>Series</Text>
-                  <View style={styles.View4} >
-                    <TextInput
-                      style={{}}
-                      allowFontScaling={true}
-                      placeholderTextColor='#c4c4c4'
-                      placeholder={'Select'}
-                    />
-                  </View>
-                </View>
-
-              </View>
-
-              <View style={{ flexDirection: 'row', marginTop: ResponsiveDP.getPixelByHeightDP(16), }}>
-
-                <View style={{ marginRight: ResponsiveDP.getPixelByWidthDP(4) }} >
-                  <TouchableOpacity style={styles.TouchableOpacity1} >
-                    <Text style={{ fontSize: ResponsiveDP.FontSizeRP(SizeFontGeneral), color: "#02a71e" }}>Recent Search</Text>
+            {
+              Routs.map((item, key) => {
+                return (
+                  <TouchableOpacity key={key} style={styles.Contain1} onPress={() => this.selectRout(item.route)} >
+                    <Text>{item.name}</Text>
                   </TouchableOpacity>
-                </View>
-
-                <View style={{ marginLeft: ResponsiveDP.getPixelByWidthDP(4) }} >
-                  <TouchableOpacity style={styles.TouchableOpacity2} >
-                    <Text style={{ fontSize: ResponsiveDP.FontSizeRP(SizeFontGeneral), color: "#ffffff" }}>Recent Search</Text>
-                  </TouchableOpacity>
-                </View>
-
-              </View>
-
-            </View>
-
+                )
+              })
+            }
           </ScrollView>
-
-          <View style={styles.Footer}>
-
-            <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-              <Image style={{
-                width: ResponsiveDP.getPixelByWidthDP(24),
-                height: ResponsiveDP.getPixelByHeightDP(24),
-              }} source={require('./Assets/tap-home/tapbar_home_inactive.png')} />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-              <Image style={{
-                width: ResponsiveDP.getPixelByWidthDP(24),
-                height: ResponsiveDP.getPixelByHeightDP(24),
-              }} source={require('./Assets/tap-apps/tapbar_apps_active.png')} />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-              <Image style={{
-                width: ResponsiveDP.getPixelByWidthDP(24),
-                height: ResponsiveDP.getPixelByHeightDP(24),
-              }} source={require('./Assets/tap-notifications/tapbar_notification_inactive.png')} />
-            </TouchableOpacity>
-
-          </View>
         </View>
+
       </View>
     );
   }
@@ -192,8 +76,10 @@ const styles = StyleSheet.create({
   Contain1: {
     backgroundColor: '#ffffff',
     padding: ResponsiveDP.getPixelByWidthDP(16),
-    flexDirection: 'row',
     height: ResponsiveDP.getPixelByHeightDP(48),
+    width: ResponsiveDP.getPixelByWidthDP(360),
+    borderBottomWidth: 1,
+    borderColor: 'grey'
   },
   Contain2: {
     backgroundColor: '#ffffff',
